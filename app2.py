@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-from flask import Flask
+from flask import Flask, make_response
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return '<h1>Hello world</h1>'
+    return make_response('<h1>Hello world</h1>')
 
 
 @app.route('/counter/<int:value>')
@@ -15,9 +15,9 @@ def counter(value):
 
     while value <= 5:
         if value in my_dict.keys():
-            return my_dict[value]
+            return make_response(my_dict[value])
         else:
-            return 'Unknown Number'
+            return make_response('Unknown Number')
 
 
 if __name__ == '__main__':
